@@ -1,9 +1,3 @@
-set(
-	PLATFORM_GLFW_FILES
-	src/Base/Platform/GLFW/GLFWPlatformWindow.h
-	src/Base/Platform/GLFW/GLFWPlatformWindow.cpp
-)
-
 add_executable(
 	Chip8
 	src/Base/Core.h
@@ -11,9 +5,8 @@ add_executable(
 
 	src/Base/Graphics/Window.h
 	src/Base/Graphics/Window.cpp
-
-	src/Base/Platform/Generic/IPlatformWindow.h
-	${PLATFORM_GLFW_FILES}
+	src/Base/Graphics/Context.h
+	src/Base/Graphics/Context.cpp
 
 	src/Emulator/Main.cpp
 )

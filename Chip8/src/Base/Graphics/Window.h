@@ -1,5 +1,7 @@
 #pragma once
-#include "Base/Platform/Generic/IPlatformWindow.h"
+#include "Base/Core.h"
+
+#include <GLFW/glfw3.h>
 #include <string>
 
 namespace emu
@@ -8,14 +10,20 @@ namespace emu
 	{
 	public:
 
-		Window(UInt32 width, UInt32 height, const std::string& title);
+		Window(Int32 width, Int32 height, const std::string& title);
+		~Window();
 
-		inline bool IsOpen() const { return m_PlatformImpl->IsOpen(); }
-		inline void Update() const { m_PlatformImpl->Update(); }
+		Window(const Window&) = delete;
+		Window(Window&&) = delete;
+		Window& operator=(const Window&) = delete;
+		Window& operator=(Window&&) = delete;
+
+		void SwapBuffers() const;
+		inline bool IsClosed() const { return glfwWindowShouldClose(m_RawWindow); }
 
 	private:
 
-		IPlatformWindow* m_PlatformImpl;
+		GLFWwindow* m_RawWindow;
 
 	};
 }

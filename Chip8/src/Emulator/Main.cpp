@@ -4,9 +4,10 @@
 int main()
 {
 	emu::Window window(1280, 720, "Chip8 Emulator");
+	emu::Context context(&window);
 
-	while (window.IsOpen())
+	while (!window.IsClosed())
 	{
-		window.Update();
+		window.SwapBuffers();
 	}
 }
